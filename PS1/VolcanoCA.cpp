@@ -2,7 +2,10 @@
    Colton Anderson
    8/28/2020
    VolcanoCA.cpp
-   Description: Pain
+   Description: Determine if location of house is safe from volcano,
+				if not find if cave is safe from volcano when erruptions,
+				occures in up, down, left, right directions and blocked,
+				by water.
 ********************************/
 
 // Headers
@@ -21,13 +24,9 @@ int main()
 	// Variables
 	ifstream inputFile;
 	string fileName;
-	char temp;
-	bool home = false;
-	bool volcano = false;
-	bool cave = false;
+	int numChars = 0, numArrays =0, numCases = 0, caseNum = 0;
+	int homey = 0, homex = 0, watery = 0, waterx = 0, cavey = 0, cavex = 0, volcanoy = 0, volcanox = 0;		// Y->numArray | X->numChar
 	bool water = false;
-	int homex, homey, volcanox, volcanoy, waterx, watery, cavex, cavey = 0;
-	int numRows = 0, numCols = 0, numCases = 0;
     
 	// Retrieve filename
 	cout << "\nEnter filename:";
@@ -43,124 +42,132 @@ int main()
 	if (inputFile)	// If opened; process
 	{
 		// Load array from file
-		for (int i = 0; i < numCases; i++)
+		for (caseNum; caseNum < numCases; caseNum++)
 		{
 			// Load first array size
-			inputFile >> numCols;
-			inputFile >> numRows;
+			inputFile >> numArrays;		// Y
+			inputFile >> numChars;		// X
 
 			// Create 2D Array
-			char** array;
-			array = new char* [numCols];
-			for (int i = 0; i < numRows; i++)
+			char** array = new char* [numArrays];		// Create an array of pointers for num colums
+			for (int i = 0; i < numArrays; i++)
 			{
-				array[i] = new char[numRows];
+				array[i] = new char[numChars];			// Creates an array of num of Chars for each arrary of pointers
 			}
 
-			for (int o = 0; o < numCols; o++)
+			for (int o = 0; o < numArrays; o++)
 			{
-				for (int p = 0; p < numRows; p++)
+				for (int p = 0; p < numChars; p++)
 				{
-					inputFile >> temp;
-					array[o][p] = temp;
-					cout << "Test Spot A";
+					inputFile >> array[o][p];
 				}
 			}
 
-			// Look through array for locatons
-			while (water)
+			// Find Volcano (V) location
+			// Cycle thru array looking for volcano
+			for (int i = 0; i < numArrays; i++)
 			{
-				for (int i = 0; i < numCols; i++)
+				for (int j = 0; j < numChars; j++)
 				{
-					for (int p = 0; p < numRows; p++)
+					if (array[i][j] == 'V')
 					{
-						array[i][p] = temp;
-
-						if ('W' == "temp"[0])
-						{
-							waterx = i;
-							watery = p;
-							water = true;
-							cout << "Water found\n";
-						}
-					}
+						volcanoy = i;
+						volcanox = j;
+					}					
 				}
 			}
-			while (home)
-			{
-				for (int i = 0; i < numCols; i++)
-				{
-					for (int p = 0; p < numRows; p++)
-					{
-						array[i][p] = temp;
 
-						if ('S' == "temp"[0])
-						{
-							homex = i;
-							homey = p;
-							home = true;
-							cout << "Home found\n";
-						}
-					}
-				}
-			}
-			while (cave)
+			// Find Home (S) location
+			// Cycle thru array looking for home
+			for (int i = 0; i < numArrays; i++)
 			{
-				for (int i = 0; i < numCols; i++)
+				for (int j = 0; j < numChars; j++)					
 				{
-					for (int p = 0; p < numRows; p++)
+					if (array[i][j] == 'S')
 					{
-						array[i][p] = temp;
-
-						if ('C' == "temp"[0])
-						{
-							cavex = i;
-							cavey = p;
-							cave = true;
-							cout << "Cave found\n";
-						}
-					}
-				}
-			}
-			while (volcano)
-			{
-				for (int i = 0; i < numCols; i++)
-				{
-					for (int p = 0; p < numRows; p++)
-					{
-						array[i][p] = temp;
-
-						if ('V' == "temp"[0])
-						{
-							volcanox = i;
-							volcanoy = p;
-							volcanoy = true;
-							cout << "Volcano found\n";
-						}
+						homey = i;
+						homex = j;					
 					}
 				}
 			}
 
-			// Output display
-			cout << "\nTesting Case Number " << i+1 << ".\n";
-			cout << "Array Size " << numCols << " " << numRows << endl;
-			for (int o = 0; o < numCols; o++)
+			// Find Cave (C) location
+			// Cycle thru array looking for cave
+			for (int i = 0; i < numArrays; i++)
 			{
-				for (int p = 0; p < numRows; p++)
+				for (int j = 0; j < numChars; j++)
 				{
-					cout << array[o][p] << " ";
+					if (array[i][j] == 'C')
+					{
+						cavey = i;
+						cavex = j;
+					}
 				}
-				cout << endl;
 			}
-			cout << "Test Spot B";
+
+			// Check and see if V is inline with S
+			if (volcanoy == homey)
+			{
+				// Check if water is between volcano and home
+				for (int i = 0; i < numChars; i++)
+				{
+					if (array[volcanoy][i] == 'W')
+					{
+						waterx = i;
+					}
+				}
+
+				if (waterx > volcanox && waterx < homex)
+				{
+					cout << "\nCase " << caseNum + 1 << ": Safe, Don't Move.\n";
+					water = true;
+				}
+
+				if (water == false)
+				{
+					// If water is not found
+					// Look for cave
+					if (volcanoy == cavey)
+					{
+						cout << "\nCase " << caseNum + 1 << ": Danger, Move!\n";
+					}
+					else if (volcanox == cavex)
+					{
+						for (int j = 0; j < numArrays; j++)
+						{
+							if (array[j][cavex] == 'W')
+							{
+								watery = j;
+								if (watery > cavex && watery < volcanox || watery < cavex && watery > volcanox)
+								{
+									cout << "\n"
+								}
+							}
+						}
+					}
+					else if (volcanox != cavex)
+					{
+						if (volcanoy != cavey)
+						{
+							cout << "\nDanger, Move To Cave!\n";
+						}
+					}
+				}
+			}
+			else
+			{
+				cout << "\nCase " << caseNum + 1 << ": Safe, Don't Move.\n";
+			}
+
 			// Close array order
-			for (int i = 0; i < numRows; i++)
+
+			for (int i = 0; i < numArrays; ++i)
 			{
-				cout << "Test Spot D";
 				delete[] array[i];
+				array[i] = NULL;
 			}
 			delete[] array;
-			cout << "Test Spot C";
+			array = NULL;
 		}
 	}
 		else	// Display Error
