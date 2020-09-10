@@ -140,7 +140,7 @@ int main()
 								watery = j;
 								if (watery > cavex && watery < volcanox || watery < cavex && watery > volcanox)
 								{
-									cout << "\n"
+									cout << "\nCase " << caseNum +1 << ": Danger! Move To Cave!\n";
 								}
 							}
 						}
@@ -149,7 +149,7 @@ int main()
 					{
 						if (volcanoy != cavey)
 						{
-							cout << "\nDanger, Move To Cave!\n";
+							cout << "\nCase " << caseNum + 1 << ": Danger, Move To Cave!\n";
 						}
 					}
 				}
