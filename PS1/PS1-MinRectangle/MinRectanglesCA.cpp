@@ -30,14 +30,12 @@ int main()
 	while (!finished)
 	{
 		// Ask user to input array size, 2-5
-		system("cls");
 		cout << "\nEnter number of rows between 2 and 5: ";
 		cin >> numInt;
 			while (numInt < 2 || numInt > 5)
 		{
 				// Validate input
-			system("cls");
-			cout << "\nPlease enter a number between 2 and 5: ";
+			cout << "\n\tError: Please enter a number between 2 and 5: ";
 			cin >> numInt;
 		}
 
@@ -46,8 +44,7 @@ int main()
 			while (numArray < 2 || numArray > 5)
 		{
 				// Validate input
-			system("cls");
-			cout << "\nPlease enter a number between 2 and 5: ";
+			cout << "\n\tError: Please enter a number between 2 and 5: ";
 			cin >> numArray;
 		}
 
