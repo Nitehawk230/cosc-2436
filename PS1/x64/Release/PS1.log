@@ -1,3 +1,0 @@
-﻿  MinRectanglesCA.cpp
-MinRectanglesCA.obj : error LNK2005: main already defined in MinRectanglesCA.obj
-D:\GitHub\cosc-2436\PS1\x64\Release\PS1.exe : fatal error LNK1169: one or more multiply defined symbols found

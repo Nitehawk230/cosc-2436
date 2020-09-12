@@ -1,3 +1,0 @@
-﻿  MinRectanglesCA.cpp
-D:\GitHub\cosc-2436\PS1\MinRectanglesCA.cpp(27,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  PS1.vcxproj -> D:\GitHub\cosc-2436\PS1\x64\Debug\PS1.exe
