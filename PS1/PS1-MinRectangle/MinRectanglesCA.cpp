@@ -74,13 +74,33 @@ int main()
 		}
 
 		// Count number of possible rectangles
-		for (int i = 0; i < numArray; i++)
+		for (int i = 1; i < numArray; i++)
 		{
-			for (int j = 0; j < numInt; j++)
+			for (int j = 1; j < numInt; j++)
 			{
-				// Correct rectangles are multiples of 2, endings CAN wrap.
+				// Check X same
+				if (array[(i - 1)][j - 1] == 1)
+				{
+					if (array[(i - 1)][j] == 1)
+						numRectangles = numRectangles + 1;
+				}
+				// Check Y same
+				if (array[(i - 1)][(j - 1)] == 1)
+				{
+					if (array[i][(j - 1)] == 1)
+						numRectangles = numRectangles + 1;
+				}
+				// Check Wrap same
+				if (array[(i - 1)][0] == 1)
+				{
+					if (array[(numArray - 1)][(numInt - 1)] == 1)
+					numRectangles = numRectangles + 1;
+				}
 			}
 		}
+
+		// Display Results
+		cout << "\nNumber of Possible Rectanges: " << numRectangles << " .\n";
 
 		// Close 2D Array
 		for (int i = 0; i < numArray; ++i)
