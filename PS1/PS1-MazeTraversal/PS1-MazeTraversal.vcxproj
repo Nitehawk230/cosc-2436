@@ -21,6 +21,9 @@
   <ItemGroup>
     <ClCompile Include="MazeTraversalCA.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="maze.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

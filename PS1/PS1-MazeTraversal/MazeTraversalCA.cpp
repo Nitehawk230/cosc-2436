@@ -18,9 +18,12 @@ int main()
 	// Variables
 	ifstream inputFile;
 	string fileName;
+	bool finished = false;
 	int numCases = 0, caseNum = 0, numArrays = 0, numLocations = 0;		// Y=numArray | X=numLocation
-	int startX = 0, startY = 0, endX = 0, endY = 0;
+	int startX = 0, startY = 0, endX = 0, endY = 0, currentY = startY, currentX = startX;
 	char method;
+	char wall = 'X';
+	char path = 'O';
 
 	// Retrieve filename
 	cout << "\nEnter filename: ";
@@ -30,6 +33,9 @@ int main()
 	inputFile.open(fileName);
 	if (inputFile)
 	{
+		// Reset bool value
+		finished = false;
+
 		// Load case number from file
 		inputFile >> numCases;
 		
@@ -43,6 +49,8 @@ int main()
 			inputFile >> startX;			// 1 value higher than array
 			inputFile >> endY;				// 1 value higher than array
 			inputFile >> endX;				// 1 value higher than array
+			startY = (startY - 1);
+			startX = (startX - 1);
 
 			// Create 2D array
 			char** array = new char* [numArrays];
@@ -52,7 +60,7 @@ int main()
 			// Populate Array with Maze
 			for (int i = 0; i < numArrays; i++)
 			{
-				for (int j = 0; j < numArrays; j++)
+				for (int j = 0; j < numLocations; j++)
 				{
 					inputFile >> array[i][j];
 				}
@@ -61,10 +69,46 @@ int main()
 			if (method == 'R')			// R hand method
 			{
 				cout << "\nCase Number " << caseNum + 1 << ": " << "Right\n";
+
+				while (!finished)
+				{
+					// X + 1 = Right | X - 1 = Left || Y + 1 = Up | Y - 1 = Down
+					//Check bounds
+					// Check if can move 'right'
+					if (currentX + 1 < numLocations)
+						if (array[currentY][(currentX + 1)] == path)
+						{
+							// Move X right one
+							currentX = (currentX + 1);
+						}
+
+					if (array[currentY][(currentX + 1)] == wall)
+					{
+						// Check bounds
+						// Check if can move down
+						if ((currentY + 1) <= numArrays)
+							if (array[(currentY + 1)][currentX] == path)
+								currentY = (currentY + 1);
+
+						// Check bounds
+						// Check if can move up
+						if ((currentY - 1) > 0)
+							if (array[(currentY - 1)][currentX] == path)
+								currentY = (currentY - 1);
+					}
+
+					// Check if at the end
+					if (array[currentY][currentX] == array[endY][endX])
+						finished = true;
+				}
 			}
 			else if (method == 'L')		// L hand method
 			{
 				cout << "\nCase Number " << caseNum + 1 << ": " << "Left\n";
+				while (!finished)
+				{
+
+				}
 			}
 
 			// Delete 2D Array
