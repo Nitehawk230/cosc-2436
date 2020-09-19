@@ -1,0 +1,5 @@
+4
+3 3 A E I
+2 4 B F J N
+4 3 C G L
+1 6 D H M O P Q
