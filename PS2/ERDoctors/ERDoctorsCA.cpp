@@ -8,24 +8,25 @@
 
 // Headers
 #include <iostream>
-#include <array>
 #include <fstream>
 #include <string>
+#include <queue>
 using namespace std;
-
-// Global variables
-
-// Function declarations
 
 int main()
 {
 	// Variables
 	int numScenarios = 0;	
-	int numEntries = 0;		
+	int numPatients = 0;		
 	int maxWaitTime = 0;	// Wait time in min
-	string patientWaitTime;
+	int minWait = 0;
+	int hourWait = 0;
+	int severity = 0;
+	int patientWaitTime = 8; // pwt * serverity
+	char temp;
 	string fileName;
 	ifstream inputFile;
+	queue<int> PatientsQ;
 
 	// Retrieve filename
 	cout << "\nPlease enter the filename: ";
@@ -39,8 +40,16 @@ int main()
 		inputFile >> numScenarios;
 		for (int i = 0; i < numScenarios; i++)
 		{
-			inputFile >> numEntries;
+			inputFile >> numPatients;
 			inputFile >> maxWaitTime;
+
+			while (i < numPatients)
+			{
+				// Read in hour : min wait time
+				inputFile >> hourWait >> temp >> minWait >> severity;
+				PatientsQ.push(severity);
+				i++;
+			}
 		}
 	}
 	else
@@ -54,13 +63,9 @@ int main()
 	//	Make sure we place the end message on a new line
 	cout << endl;
 
-	//	The following is system dependent.  It will only work on Windows
-	system("PAUSE");
-
-	/*
 	// A non-system dependent method is below
 	cout << "Press any key to continue";
 	cin.get();
-	*/
+
 	return 0;
 }
