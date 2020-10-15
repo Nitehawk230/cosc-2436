@@ -1,5 +1,4 @@
 ﻿  EvalExpressionCA.cpp
-D:\GitHub\cosc-2436\PS2\EvalExpression\EvalExpressionCA.cpp(44,21): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\cosc-2436\PS2\EvalExpression\EvalExpressionCA.cpp(82,21): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\cosc-2436\PS2\EvalExpression\EvalExpressionCA.cpp(97,35): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'std::string'
-D:\GitHub\cosc-2436\PS2\EvalExpression\EvalExpressionCA.cpp(97,35): message : No constructor could take the source type, or constructor overload resolution was ambiguous
+D:\GitHub\cosc-2436\PS2\EvalExpression\EvalExpressionCA.cpp(42,21): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\cosc-2436\PS2\EvalExpression\EvalExpressionCA.cpp(79,21): warning C4018: '<': signed/unsigned mismatch
+  EvalExpressionCA.vcxproj -> D:\GitHub\cosc-2436\PS2\Debug\EvalExpressionCA.exe

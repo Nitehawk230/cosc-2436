@@ -1,0 +1,3 @@
+﻿  CheckPaliCA.cpp
+D:\GitHub\cosc-2436\PS2\CheckPalin\CheckPaliCA.cpp(51,20): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  CheckPalin.vcxproj -> D:\GitHub\cosc-2436\PS2\x64\Debug\CheckPalin.exe

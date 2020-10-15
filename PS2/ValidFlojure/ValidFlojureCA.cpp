@@ -91,16 +91,10 @@ int main()
 			for (int i = 0; i < numCase; i++)
 			{
 				// Read line from file
-				if (numCodeLines == 1)
+				for (int j = 0; j < numCodeLines; j++)
 				{
-					getline(inputFile, expression);
-				}
-				else if (numCodeLines >= 1)
-				{
-					while (getline(inputFile, temp) && count < numCodeLines)
-					{
-						expression += temp + " ";
-					}
+					getline(inputFile, temp);
+					expression += temp;
 				}
 
 				// Call functions to test for balance
