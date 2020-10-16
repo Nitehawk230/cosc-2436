@@ -4,6 +4,7 @@
    ValidFlojureCA.cpp
    Write a program to validate code from a test file to ensure
    every (,{,[,],},) has its correlating partner.
+   References: GeeksForGeeks and mycodeschool Github
 ********************************/
 
 // Headers
