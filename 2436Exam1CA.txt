@@ -1,0 +1,37 @@
+1. C
+2. B
+3. D
+4. A
+5. B
+6. C
+7. D
+8. A
+9. B
+10. B
+11. D
+12. C
+13. B
+14. A
+15. B
+16. B
+17. A
+18. A
+19. A
+20. B
+21. +W0RLD*/-
+22. Returns the remainder of the number if divisible by 2. 
+23. int foo (int x)
+{
+	if (n < 1)
+		return 0;
+	else if (n == 1)
+		return 1;
+	else return foo(n - 1) + 2(foo(n - 2))	
+}
+24. S
+25. 17
+26. Pass 1: 1,2,3,8,9,7
+	Pass 2: 1,2,3,8,9,7
+	Pass 3: 1,2,3,8,9,7
+	Pass 4: 1,2,3,7,9,8
+	Pass 5: 1,2,3,7,8,9

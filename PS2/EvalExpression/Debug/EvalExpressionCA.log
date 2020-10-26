@@ -1,4 +1,4 @@
 ﻿  EvalExpressionCA.cpp
-D:\GitHub\cosc-2436\PS2\EvalExpression\EvalExpressionCA.cpp(42,21): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\cosc-2436\PS2\EvalExpression\EvalExpressionCA.cpp(79,21): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\cosc-2436\PS2\EvalExpression\EvalExpressionCA.cpp(43,21): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\cosc-2436\PS2\EvalExpression\EvalExpressionCA.cpp(80,21): warning C4018: '<': signed/unsigned mismatch
   EvalExpressionCA.vcxproj -> D:\GitHub\cosc-2436\PS2\Debug\EvalExpressionCA.exe
