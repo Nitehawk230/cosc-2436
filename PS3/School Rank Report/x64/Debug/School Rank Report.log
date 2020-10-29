@@ -1,2 +1,4 @@
 ﻿  SchoolRankSupportCA.cpp
-  School Rank Report.vcxproj -> D:\GitHub\cosc-2436\PS3\x64\Debug\School Rank Report.exe
+D:\GitHub\cosc-2436\PS3\School Rank Report\SchoolRankSupportCA.cpp(76,37): error C2228: left of '.schoolName' must have class/struct/union
+D:\GitHub\cosc-2436\PS3\School Rank Report\SchoolRankSupportCA.cpp(76,37): message : type is 'int'
+D:\GitHub\cosc-2436\PS3\School Rank Report\SchoolRankSupportCA.cpp(117,9): error C2059: syntax error: ')'

@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <algorithm>
 using namespace std;
 
 // Global Constants
@@ -31,7 +32,6 @@ struct Students
 	int numCorr = 0;
 	int numIncorr = 0;
 	int UILScore = 0;
-	int ID;
 };
 
 int main()
@@ -69,11 +69,11 @@ int main()
 			while (inputFile)
 			{
 				// Load student into
-				Students StuIndex;
-				inputFile >> StuIndex.firstName;
-				inputFile >> StuIndex.lastName;
-				inputFile >> StuIndex.schoolName;
-				inputFile >> StuIndex.schoolClass;
+				Students StuStruct[StuIndex];
+				inputFile >> StuStruct.firstName;
+				inputFile >> StuStruct.lastName;
+				inputFile >> StuStruct.schoolName;
+				inputFile >> StuStruct.schoolClass;				
 
 				// Load Students' answers
 				for (int i = 0; i < numOfQ; i++)
@@ -92,12 +92,12 @@ int main()
 					else if (stuAnswers[i] == KEY[i])
 					{
 						// Correct
-						StuIndex.numCorr += 1;
+						StuStruct.numCorr += 1;
 					}
 					else
 					{
 						// Incorrect
-						StuIndex.numIncorr += 1;
+						StuStruct.numIncorr += 1;
 					}
 						
 				}
@@ -110,7 +110,18 @@ int main()
 			// Display info
 			for (int i = 0; i < StuIndex; i++)
 			{
+				// Sort by School Rank then by Score
+				// 1A
+				if ()
+				// 2A
+
+				// 3A
+
+				// 4A
 				
+				// 5A
+
+				// 6A
 			}
 		}
 
