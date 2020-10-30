@@ -22,7 +22,7 @@ const int NUMOFTESTANSWERS = 40;
 // THOUGHTS
 // process file, load students answers into queue and compare to key queue and calculate score, store score and school rank
 
-struct Students
+struct Student
 {
 	string firstName;
 	string lastName;
@@ -34,19 +34,27 @@ struct Students
 	int UILScore = 0;
 };
 
+// Function to compare students based off score
+bool compareStudents(Student a, Student b)
+{
+	// If student A has higher score; return true
+	if (a.UILScore > b.UILScore)
+		return true;
+}
+
 int main()
 {
 	//	Variables
 	string fileName;
 	ifstream inputFile;
-	string studentFName;
-	string schoolName;
-	string schoolClassification;
 	string temp;
 	int numOfQ = 40;
 	int StuIndex = 0;
+	int numOfStudents = 0;
 	vector<string> KEY;
 	vector<string> stuAnswers;
+	vector<string> studentNames;
+	Student studentsStruct;
 
 	// Codes
 	cout << "Enter Filename: ";	
@@ -65,15 +73,14 @@ int main()
 				inputFile >> temp;
 				KEY.push_back(temp);
 			}
-			
 			while (inputFile)
 			{
-				// Load student into
-				Students StuStruct[StuIndex];
-				inputFile >> StuStruct.firstName;
-				inputFile >> StuStruct.lastName;
-				inputFile >> StuStruct.schoolName;
-				inputFile >> StuStruct.schoolClass;				
+				// Creates a new user in struct off data from file
+				inputFile >> studentsStruct.firstName;
+				inputFile >> studentsStruct.lastName;
+				inputFile >> studentsStruct.schoolName;
+				inputFile >> studentsStruct.schoolClass;
+				studentNames.push_back(studentsStruct.firstName);
 
 				// Load Students' answers
 				for (int i = 0; i < numOfQ; i++)
@@ -92,19 +99,19 @@ int main()
 					else if (stuAnswers[i] == KEY[i])
 					{
 						// Correct
-						StuStruct.numCorr += 1;
+						studentsStruct.numCorr += 1;
 					}
 					else
 					{
 						// Incorrect
-						StuStruct.numIncorr += 1;
+						studentsStruct.numIncorr += 1;
 					}
 						
 				}
 
 				// Calculate students' score
-				StuIndex.testScore = (StuIndex.numCorr / StuIndex.numIncorr);
-				StuIndex.UILScore = ((StuIndex.numCorr * 6) - (StuIndex.numIncorr * 2));
+				studentsStruct.testScore = (studentsStruct.numCorr / studentsStruct.numIncorr);
+				studentsStruct.UILScore = ((studentsStruct.numCorr * 6) - (studentsStruct.numIncorr * 2));
 			}
 
 			// Display info
@@ -112,16 +119,66 @@ int main()
 			{
 				// Sort by School Rank then by Score
 				// 1A
-				if ()
+				for (int j = 0; j < numOfStudents; j++)
+				{
+					temp = studentNames[j];
+					if (studentsStruct.firstName == temp && studentsStruct.schoolClass == "1A")
+					{
+						// Display 1A from highest score to lowest
+
+					}
+					
+				}
 				// 2A
+				for (int j = 0; j < numOfStudents; j++)
+				{
+					temp = studentNames[j];
+					if (studentsStruct.firstName == temp && studentsStruct.schoolClass == "2A")
+					{
+						// Display 2A from highest score to lowest
+					}
 
+				}
 				// 3A
+				for (int j = 0; j < numOfStudents; j++)
+				{
+					temp = studentNames[j];
+					if (studentsStruct.firstName == temp && studentsStruct.schoolClass == "3A")
+					{
+						// Display 3A from highest score to lowest
+					}
 
+				}
 				// 4A
-				
-				// 5A
+				for (int j = 0; j < numOfStudents; j++)
+				{
+					temp = studentNames[j];
+					if (studentsStruct.firstName == temp && studentsStruct.schoolClass == "4A")
+					{
+						// Display 4A from highest score to lowest
+					}
 
+				}
+				// 5A
+				for (int j = 0; j < numOfStudents; j++)
+				{
+					temp = studentNames[j];
+					if (studentsStruct.firstName == temp && studentsStruct.schoolClass == "5A")
+					{
+						// Display 5A from highest score to lowest
+					}
+
+				}
 				// 6A
+				for (int j = 0; j < numOfStudents; j++)
+				{
+					temp = studentNames[j];
+					if (studentsStruct.firstName == temp && studentsStruct.schoolClass == "6A")
+					{
+						// Display 6A from highest score to lowest
+					}
+
+				}
 			}
 		}
 
