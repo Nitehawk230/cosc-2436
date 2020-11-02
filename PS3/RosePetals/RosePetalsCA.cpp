@@ -79,7 +79,7 @@ int main()
 				{
 					// Remove user at index
 					//suitors.erase(index);
-					for (int i = 0; i < index; i++)
+					for (int i = 0; i < (index - 1); i++)
 					{
 						temp = suitors.front();
 						suitors.pop_front();
