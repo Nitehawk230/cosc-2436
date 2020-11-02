@@ -2,7 +2,7 @@
    Colton Anderson
    10/26/2020
    CrewSchedulingCA.cpp
-   Description
+   Use of class
 ********************************/
 
 // Headers

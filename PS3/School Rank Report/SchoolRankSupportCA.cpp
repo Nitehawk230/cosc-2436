@@ -19,9 +19,6 @@ using namespace std;
 // Global Constants
 const int NUMOFTESTANSWERS = 40;
 
-// THOUGHTS
-// process file, load students answers into queue and compare to key queue and calculate score, store score and school rank
-
 struct Student
 {
 	string firstName;
@@ -34,12 +31,14 @@ struct Student
 	int UILScore = 0;
 };
 
-// Function to compare students based off score
-bool compareStudents(Student a, Student b)
+bool compareStu(Student lhs, Student rhs)
 {
-	// If student A has higher score; return true
-	if (a.UILScore > b.UILScore)
-		return true;
+	return lhs.UILScore < rhs.UILScore;
+}
+
+bool sortStu(Student lhs, Student rhs)
+{
+	return lhs.schoolClass < rhs.schoolClass;
 }
 
 int main()
@@ -48,13 +47,15 @@ int main()
 	string fileName;
 	ifstream inputFile;
 	string temp;
+	string stuName;
 	int numOfQ = 40;
-	int StuIndex = 0;
 	int numOfStudents = 0;
+	int stuIndex = 0;
 	vector<string> KEY;
 	vector<string> stuAnswers;
-	vector<string> studentNames;
-	Student studentsStruct;
+	vector<Student> students;
+	vector<string> firstNames;
+	Student studentName;
 
 	// Codes
 	cout << "Enter Filename: ";	
@@ -73,115 +74,46 @@ int main()
 				inputFile >> temp;
 				KEY.push_back(temp);
 			}
-			while (inputFile)
-			{
-				// Creates a new user in struct off data from file
-				inputFile >> studentsStruct.firstName;
-				inputFile >> studentsStruct.lastName;
-				inputFile >> studentsStruct.schoolName;
-				inputFile >> studentsStruct.schoolClass;
-				studentNames.push_back(studentsStruct.firstName);
 
-				// Load Students' answers
+			// Load Students information
+			//inputFile >> stuName;
+			//firstNames.push_back(stuName);			
+			inputFile >> studentName.firstName;
+			inputFile >> studentName.lastName;
+			inputFile >> studentName.schoolName;
+			inputFile >> studentName.schoolClass;
+			students.push_back(studentName);
+			numOfStudents += 1;
+
+				// Load students' answers
 				for (int i = 0; i < numOfQ; i++)
 				{
 					inputFile >> temp;
 					stuAnswers.push_back(temp);
 				}
 
-				// Compare students' answers to key and store score to struct
+				// Calculate student score
 				for (int i = 0; i < numOfQ; i++)
 				{
-					if (stuAnswers[i] == "S")
-					{
-						// skip
-					}					
-					else if (stuAnswers[i] == KEY[i])
-					{
-						// Correct
-						studentsStruct.numCorr += 1;
-					}
-					else
-					{
-						// Incorrect
-						studentsStruct.numIncorr += 1;
-					}
-						
+					if (stuAnswers[i] == KEY[i])
+						studentName.numCorr += 1;
+					else if (stuAnswers[i] != KEY[i])
+						studentName.numIncorr += 1;
 				}
+				studentName.testScore = (studentName.numCorr / numOfQ);
+				studentName.UILScore = ((studentName.numCorr * 6) - (studentName.numIncorr * 2));
 
-				// Calculate students' score
-				studentsStruct.testScore = (studentsStruct.numCorr / studentsStruct.numIncorr);
-				studentsStruct.UILScore = ((studentsStruct.numCorr * 6) - (studentsStruct.numIncorr * 2));
-			}
-
-			// Display info
-			for (int i = 0; i < StuIndex; i++)
-			{
-				// Sort by School Rank then by Score
-				// 1A
-				for (int j = 0; j < numOfStudents; j++)
-				{
-					temp = studentNames[j];
-					if (studentsStruct.firstName == temp && studentsStruct.schoolClass == "1A")
-					{
-						// Display 1A from highest score to lowest
-
-					}
-					
-				}
-				// 2A
-				for (int j = 0; j < numOfStudents; j++)
-				{
-					temp = studentNames[j];
-					if (studentsStruct.firstName == temp && studentsStruct.schoolClass == "2A")
-					{
-						// Display 2A from highest score to lowest
-					}
-
-				}
-				// 3A
-				for (int j = 0; j < numOfStudents; j++)
-				{
-					temp = studentNames[j];
-					if (studentsStruct.firstName == temp && studentsStruct.schoolClass == "3A")
-					{
-						// Display 3A from highest score to lowest
-					}
-
-				}
-				// 4A
-				for (int j = 0; j < numOfStudents; j++)
-				{
-					temp = studentNames[j];
-					if (studentsStruct.firstName == temp && studentsStruct.schoolClass == "4A")
-					{
-						// Display 4A from highest score to lowest
-					}
-
-				}
-				// 5A
-				for (int j = 0; j < numOfStudents; j++)
-				{
-					temp = studentNames[j];
-					if (studentsStruct.firstName == temp && studentsStruct.schoolClass == "5A")
-					{
-						// Display 5A from highest score to lowest
-					}
-
-				}
-				// 6A
-				for (int j = 0; j < numOfStudents; j++)
-				{
-					temp = studentNames[j];
-					if (studentsStruct.firstName == temp && studentsStruct.schoolClass == "6A")
-					{
-						// Display 6A from highest score to lowest
-					}
-
-				}
-			}
 		}
 
+		// sort and output
+		//sort(students.begin(), students.end(), compareStu);
+		//sort(students.begin(), students.end(), sortStu);
+
+		for (int i = 0; i < numOfStudents; i++)
+		{
+			stuName = firstNames[i];
+			cout << "\nTesting for: " << studentName.firstName;
+		}
 	}
 	else
 		cout << "\nError Opening File!";
