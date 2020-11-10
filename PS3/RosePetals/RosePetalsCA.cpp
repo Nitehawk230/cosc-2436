@@ -15,8 +15,6 @@
 #include <iterator>
 using namespace std;
 
-int numPetals(int n);
-
 int main()
 {
 	//	Variables
@@ -56,7 +54,7 @@ int main()
 				suitors.push_back(name);
 				numOfSuitors += 1;
 			}
-			
+			suitors.pop_back();
 			// Find the one to die
 			while (inputFile >> petals)
 			{
@@ -81,10 +79,12 @@ int main()
 					//suitors.erase(index);
 					for (int i = 0; i < (index - 1); i++)
 					{
+						temp = "";
 						temp = suitors.front();
 						suitors.pop_front();
 						suitors.push_back(temp);
 					}
+					temp = "";
 					temp = suitors.front();
 					suitors.pop_front();
 					cout << "\n" << temp << " is a loser!";
@@ -105,12 +105,4 @@ int main()
 	cin.get();
 
 	return 0;
-}
-
-int numPetals(int n)
-{
-	if (n == 1)
-		return 1;
-	else
-	return (numPetals(n - 1) + 1) % n + 1;
 }
