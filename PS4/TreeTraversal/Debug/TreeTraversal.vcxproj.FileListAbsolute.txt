@@ -1,0 +1,2 @@
+D:\GitHub\cosc-2436\PS4\TreeTraversal\Debug\TreeTraversal.exe
+D:\GitHub\cosc-2436\PS4\TreeTraversal\Debug\TreeTraversal.pdb
