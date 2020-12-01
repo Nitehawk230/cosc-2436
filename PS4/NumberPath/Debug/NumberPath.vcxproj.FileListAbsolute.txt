@@ -1,0 +1,2 @@
+D:\GitHub\cosc-2436\PS4\NumberPath\Debug\NumberPath.exe
+D:\GitHub\cosc-2436\PS4\NumberPath\Debug\NumberPath.pdb

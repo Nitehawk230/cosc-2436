@@ -9,29 +9,39 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
-#include <vector>
 #include <fstream>
+#include <vector>
+#include <Bits.h>
+
 using namespace std;
 
+// Functions
+void addEdge(vector<int> adj[], int u, int v)
+{
+	adj[u].push_back(v);
+	adj[v].push_back(u);
+}
+void printGraph(vector<int> adj[], int V)
+{
+	for (int v = 0; v < V; ++v)
+	{
+		cout << "\nAdj list of vertest " << v << "\nhead ";
+		for (auto x : adj[v])
+			cout << "-> " << x;
+		printf("\n");
+	}
+}
 int main()
 {
 	//	Variables
-	const int numX = 20, const int numY = 20;
-	vector<vector<int>> Field(numX);
+	const int numX = 20;
+	const int numY = 20;
+	const int V = 400;
 	int numFields = 0;
 	int numHours = 0;
+	char temp;
 	string fileName;
 	ifstream inputFile;
-
-	// Create 2d matrix
-	for (int y = 0; y < numY; y++)
-	{
-		Field[y] = vector<int>(numX);
-		for (int x = 0; x < numX; x++)
-		{
-			Field[y][x] = j + 1;
-		}
-	}
 
 	// Retrieve filename;
 	cout << "Enter filename: ";
@@ -41,14 +51,21 @@ int main()
 	inputFile.open(fileName);
 	if (inputFile)
 	{
-		// Load matrix
+		// Load number of fields
+		inputFile >> numFields;
+
+		vector<int> adj[V];
 		for (int y = 0; y < numY; y++)
 		{
 			for (int x = 0; x < numX; x++)
 			{
-				
+				inputFile >> temp;
+				addEdge(adj, y, temp);
 			}
 		}
+
+		// Compute the dayta
+		printGraph(adj, V);
 	}
 	else
 		cout << "\nError opening file!";
